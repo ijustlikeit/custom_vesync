@@ -201,7 +201,12 @@ class VeSyncAirQualitySensor(VeSyncHumidifierSensorEntity):
     @property
     def device_class(self):
         """Return the air quality device class."""
-        return None
+        return StateDeviceClass.ENUM
+    
+    @property
+    def options(self):
+        """Return the air quality options."""
+        return ["Excellent", "Good", "Moderate", "Bad"]
 
     @property
     def state_class(self):
