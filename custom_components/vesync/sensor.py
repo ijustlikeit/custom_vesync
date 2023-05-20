@@ -185,7 +185,7 @@ class VeSyncAirQualitySensor(VeSyncHumidifierSensorEntity):
     """Representation of an air quality sensor."""
 
     _attr_state_class = SensorStateClass.MEASUREMENT
-    _attr_device_class = SensorDeviceClass.AQI
+    #_attr_device_class = SensorDeviceClass.AQI
 
     def __init__(self, plug, coordinator):
         """Initialize the VeSync outlet device."""
