@@ -150,7 +150,7 @@ class VeSyncFanChildLockHA(VeSyncSwitchEntity):
     @property
     def is_on(self):
         """Return True if it is locked."""
-        return self.is_on_safe("child_lock")
+        return super().is_on_safe("child_lock")
 
     def turn_on(self, **kwargs):
         """Turn the lock on."""
@@ -181,7 +181,7 @@ class VeSyncHumidifierDisplayHA(VeSyncSwitchEntity):
     @property
     def is_on(self):
         """Return True if it is locked."""
-        return self.is_on_safe("display")
+        return super().is_on_safe("display")
 
     def turn_on(self, **kwargs):
         """Turn the lock on."""
@@ -243,7 +243,7 @@ class VeSyncHumidifierAutoOnHA(VeSyncSwitchEntity):
     @property
     def is_on(self):
         """Return True if in auto mode."""
-        return self.is_on_safe("mode") == "auto"
+        return super().is_on_safe("mode") == "auto"
 
     def turn_on(self, **kwargs):
         """Turn auto mode on."""
