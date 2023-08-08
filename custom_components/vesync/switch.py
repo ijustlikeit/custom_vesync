@@ -70,14 +70,6 @@ class VeSyncBaseSwitch(VeSyncDevice, SwitchEntity):
     def turn_on(self, **kwargs):
         """Turn the device on."""
         self.device.turn_on()
-    
-    def is_on_safe(self, key):
-        """Return True if the given property is on."""
-        if key in self.device.details.keys():
-            return self.device.details[key]
-        else:
-            _LOGGER.error(f'Key "{key}" is not present in details "{self.device.details}" for "{super().name}"!')
-            return "unavailable"
 
 
 class VeSyncSwitchHA(VeSyncBaseSwitch, SwitchEntity):
@@ -129,7 +121,14 @@ class VeSyncSwitchEntity(VeSyncBaseEntity, SwitchEntity):
     def entity_category(self):
         """Return the configuration entity category."""
         return EntityCategory.CONFIG
-
+    
+    def is_on_safe(self, key):
+        """Return True if the given property is on."""
+        if key in self.device.details.keys():
+            return self.device.details[key]
+        else:
+            _LOGGER.error(f'Key "{key}" is not present in details "{self.device.details}" for "{super().name}"!')
+            return "unavailable"
 
 class VeSyncFanChildLockHA(VeSyncSwitchEntity):
     """Representation of the child lock switch."""
