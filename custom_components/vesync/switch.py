@@ -121,7 +121,7 @@ class VeSyncSwitchEntity(VeSyncBaseEntity, SwitchEntity):
     def entity_category(self):
         """Return the configuration entity category."""
         return EntityCategory.CONFIG
-    
+   
     def is_on_safe(self, keys):
         """Return True if the given property is on."""
         for key in keys:
@@ -131,6 +131,7 @@ class VeSyncSwitchEntity(VeSyncBaseEntity, SwitchEntity):
             f'Keys "{keys}" keys are not present in details "{self.device.details}" for "{super().name}"!'
         )
         return "unavailable"
+
 
 class VeSyncFanChildLockHA(VeSyncSwitchEntity):
     """Representation of the child lock switch."""
