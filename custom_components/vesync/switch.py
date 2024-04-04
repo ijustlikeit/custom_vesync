@@ -127,7 +127,9 @@ class VeSyncSwitchEntity(VeSyncBaseEntity, SwitchEntity):
         for key in keys:
             if key in self.device.details.keys():
                 return self.device.details[key]
-        _LOGGER.error(f'Keys "{keys}" keys are not present in details "{self.device.details}" for "{super().name}"!')
+        _LOGGER.error(
+            f'Keys "{keys}" keys are not present in details "{self.device.details}" for "{super().name}"!'
+        )
         return "unavailable"
 
 class VeSyncFanChildLockHA(VeSyncSwitchEntity):
