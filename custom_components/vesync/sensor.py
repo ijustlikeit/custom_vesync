@@ -85,7 +85,7 @@ def _setup_entities(devices, async_add_entities, coordinator):
         if has_feature(dev, "details", "air_quality"):
             if dev.device_type == "LV-PUR131S":
                 entities.append(VeSyncAirQualitySensorPUR131S(dev, coordinator))
-            else
+            else:
                 entities.append(VeSyncAirQualitySensor(dev, coordinator))
         if has_feature(dev, "details", "aq_percent"):
             entities.append(VeSyncAirQualityPercSensor(dev, coordinator))
