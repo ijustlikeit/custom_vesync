@@ -31,6 +31,7 @@ from .const import (
 
 _LOGGER = logging.getLogger(__name__)
 
+pur131s_quality_strings = ["excellent", "very good", "good", "bad"]
 
 async def async_setup_entry(
     hass: HomeAssistant,
@@ -82,7 +83,10 @@ def _setup_entities(devices, async_add_entities, coordinator):
         if has_feature(dev, "details", "humidity"):
             entities.append(VeSyncHumiditySensor(dev, coordinator))
         if has_feature(dev, "details", "air_quality"):
-            entities.append(VeSyncAirQualitySensor(dev, coordinator))
+            if dev.device_type == "LV-PUR131S":
+                entities.append(VeSyncAirQualitySensorPUR131S(dev, coordinator))
+            else
+                entities.append(VeSyncAirQualitySensor(dev, coordinator))
         if has_feature(dev, "details", "aq_percent"):
             entities.append(VeSyncAirQualityPercSensor(dev, coordinator))
         if has_feature(dev, "details", "air_quality_value"):
@@ -294,6 +298,25 @@ class VeSyncAirQualitySensor(VeSyncHumidifierSensorEntity):
                 self.name,
                 quality,
             )
+        _LOGGER.warning("No air quality index found in '%s'", self.name)
+        return None
+
+
+class VeSyncAirQualitySensorPUR131S(VeSyncAirQualitySensor):
+    @property
+    def native_value(self):
+        """Return the air quality index."""
+        if has_feature(self.smarthumidifier, "details", "air_quality"):
+            quality = self.smarthumidifier.details["air_quality"]
+            try:
+                index = pur131s_quality_strings.index(quality)
+                return index + 1
+            except ValueError:
+                _LOGGER.warning(
+                    "Got unrecognized value for PUR131S AQI sensor from 'air_quality' for %s: %s",
+                    self.name,
+                    quality,
+                )
         _LOGGER.warning("No air quality index found in '%s'", self.name)
         return None
 
