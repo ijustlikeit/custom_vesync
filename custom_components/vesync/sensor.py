@@ -31,7 +31,7 @@ from .const import (
 
 _LOGGER = logging.getLogger(__name__)
 
-pur131s_quality_strings = ["excellent", "very good", "good", "bad"]
+pur131s_quality_strings = ["excellent", "good", "moderate", "bad"]
 
 async def async_setup_entry(
     hass: HomeAssistant,
