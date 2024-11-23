@@ -13,8 +13,8 @@ from pyvesync.vesync import VeSync
 
 from .const import DOMAIN
 
-
 _LOGGER = logging.getLogger(__name__)
+
 
 class VeSyncFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
     """Handle a config flow."""
