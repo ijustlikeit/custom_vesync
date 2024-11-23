@@ -1,4 +1,5 @@
 """Support for VeSync switches."""
+
 import logging
 
 from homeassistant.components.switch import SwitchEntity
@@ -121,7 +122,7 @@ class VeSyncSwitchEntity(VeSyncBaseEntity, SwitchEntity):
     def entity_category(self):
         """Return the configuration entity category."""
         return EntityCategory.CONFIG
-  
+
     def is_on_safe(self, keys):
         """Return True if the given property is on."""
         for key in keys:

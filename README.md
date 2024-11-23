@@ -1,15 +1,16 @@
 
 # **Important message**
 > 
-> This a fork of the existing archived project created by vlebourl. Please contribute here.
+> This a fork of the archived project created by [vlebourl](https://github.com/vlebourl/custom_vesync), and previously maintained by [micahqcade](https://github.com/micahqcade/). Please contribute here.
 
 <!---[![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/custom-components/hacs)-->
-[![GitHub release](https://img.shields.io/github/v/release/micahqcade/custom_vesync.svg)](https://GitHub.com/micahqcade/custom_vesync/releases/)
+[![GitHub release](https://img.shields.io/github/v/release/haext/custom_vesync.svg)](https://GitHub.com/haext/custom_vesync/releases/)
 
 # VeSync custom component for Home Assistant
 
 Custom component for Home Assistant to interact with smart devices via the VeSync platform.
 This integration is heavily based on [VeSync_bpo](https://github.com/borpin/vesync-bpo) and relies on [pyvesync](https://github.com/webdjoe/pyvesync) under the hood.
+This a fork of the archived project created by [vlebourl](https://github.com/vlebourl/custom_vesync), and previously maintained by [micahqcade](https://github.com/micahqcade/).
 
 ## Installation
 
@@ -41,8 +42,6 @@ Navigate to the Vesync integration and click on `Enable debug logging`. Restart 
 
 ![image](https://github.com/RobertD502/custom_vesync/assets/52541649/c556458c-a0a6-4432-acec-1200fc561d79)
 
-
-
 #### YAML Method
 
 The [logger](https://www.home-assistant.io/integrations/logger/) integration lets you define the level of logging activities in Home Assistant. Turning on debug mode will show more information about unsupported devices in your logbook.
@@ -56,16 +55,20 @@ logger:
 ```
 
 ## TODO LIST
+
 ```
 - [x] Air Fryer Properties (AirFryer158)
 - [ ] Air Fryer Methods
 - [ ] Create the Card
+- [ ] Clear up the license (implied, but not stated OSS)
+- [ ] [vlebourl's Issues](https://github.com/vlebourl/custom_vesync/issues)
+- [ ] [micahqcade's Issues](https://github.com/micahqcade/custom_vesync/issues)
 ```
 
-### Contributing
+## Contributing
 
-All contributions are very welcomed!
-Please make sure to install `pre-commit` and run the pre-commit hook before submitting a PR.
+Contributions are welcomed, and for those particularly engaged with a track record of quality contributions we'll bestow maintainer status.
+Please make sure to install `pre-commit` and run the pre-commit hook before submitting a pull request.
 
 ```sh
 pip install pre-commit
@@ -73,3 +76,7 @@ pre-commit install
 pre-commit run --all-files
 ```
 
+## License
+
+All content in this repository contributed by gdgib, or from 2024-11-23 onward will be under the Apache-2.0 license.
+The lack of documented license in the upstream repository could be a problem, but we'll work with the original authors to attempt to resolve this, or perhaps simply rewrite if needed.

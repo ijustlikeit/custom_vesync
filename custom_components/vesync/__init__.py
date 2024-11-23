@@ -1,9 +1,7 @@
 """VeSync integration."""
 
-from datetime import timedelta
 import logging
-
-from pyvesync.vesync import VeSync
+from datetime import timedelta
 
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import CONF_PASSWORD, CONF_USERNAME, Platform
@@ -11,6 +9,7 @@ from homeassistant.core import HomeAssistant, ServiceCall
 from homeassistant.helpers import config_validation as cv
 from homeassistant.helpers.dispatcher import async_dispatcher_send
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
+from pyvesync.vesync import VeSync
 
 from .common import async_process_devices
 from .const import (
@@ -111,7 +110,11 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry) -> b
                         hass, VS_DISCOVERY.format(PLATFORMS[platform]), new_devices
                     )
                 else:
-                    hass.async_create_task(hass.config_entries.async_forward_entry_setups(config_entry, platform))
+                    hass.async_create_task(
+                        hass.config_entries.async_forward_entry_setups(
+                            config_entry, platform
+                        )
+                    )
 
         for k in PLATFORMS:
             _add_new_devices(k)
