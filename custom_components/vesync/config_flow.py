@@ -1,20 +1,18 @@
 """Config flow utilities."""
-from collections import OrderedDict
-import logging
 
-from pyvesync.vesync import VeSync
+import logging
 import voluptuous as vol
 
+from collections import OrderedDict
 from homeassistant import config_entries
 from homeassistant.components import dhcp
 from homeassistant.const import CONF_PASSWORD, CONF_USERNAME
 from homeassistant.core import callback
 from homeassistant.data_entry_flow import FlowResult
-
+from pyvesync.vesync import VeSync
 from .const import DOMAIN
 
 _LOGGER = logging.getLogger(__name__)
-
 
 class VeSyncFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
     """Handle a config flow."""

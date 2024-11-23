@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 import logging
-
+import homeassistant.helpers.config_validation as cv
 import voluptuous as vol
 
 from homeassistant.components.device_automation import toggle_entity
@@ -17,7 +17,6 @@ from homeassistant.const import (
 from homeassistant.core import Context, HomeAssistant
 from homeassistant.exceptions import HomeAssistantError
 from homeassistant.helpers import entity_registry as er
-import homeassistant.helpers.config_validation as cv
 from homeassistant.helpers.entity import get_capability
 from homeassistant.helpers.typing import ConfigType, TemplateVarsType
 
