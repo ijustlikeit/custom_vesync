@@ -2,9 +2,9 @@
 from __future__ import annotations
 
 import logging
+
 import homeassistant.helpers.config_validation as cv
 import voluptuous as vol
-
 from homeassistant.components.device_automation import toggle_entity
 from homeassistant.const import (
     ATTR_ENTITY_ID,

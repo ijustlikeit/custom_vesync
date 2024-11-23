@@ -33,6 +33,7 @@ _LOGGER = logging.getLogger(__name__)
 
 pur131s_quality_strings = ["excellent", "good", "moderate", "bad"]
 
+
 async def async_setup_entry(
     hass: HomeAssistant,
     config_entry: ConfigEntry,
@@ -303,6 +304,7 @@ class VeSyncAirQualitySensor(VeSyncHumidifierSensorEntity):
 
 
 class VeSyncAirQualitySensorPUR131S(VeSyncAirQualitySensor):
+    """Representation of a an air quality sensor for the PUR131S."""
     @property
     def native_value(self):
         """Return the air quality index."""
