@@ -1,4 +1,5 @@
 """Support for VeSync switches."""
+
 import logging
 
 from homeassistant.components.switch import SwitchEntity
