@@ -84,21 +84,23 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry) -> b
     hass.data[DOMAIN][config_entry.entry_id]["coordinator"] = coordinator
 
     device_dict = await async_process_devices(hass, manager)
-    platforms_list: list = []
 
-    for p, vs_p in PLATFORMS.items():
+    for _, vs_p in PLATFORMS.items():
         hass.data[DOMAIN][config_entry.entry_id][vs_p] = []
         if device_dict[vs_p]:
             hass.data[DOMAIN][config_entry.entry_id][vs_p].extend(device_dict[vs_p])
-            platforms_list.append(p)
-    await hass.config_entries.async_forward_entry_setups(config_entry, platforms_list)
+
+    await hass.config_entries.async_forward_entry_setups(
+        config_entry, list(PLATFORMS.keys())
+    )
 
     async def async_new_device_discovery(service: ServiceCall) -> None:
         """Discover if new devices should be added."""
         manager = hass.data[DOMAIN][config_entry.entry_id][VS_MANAGER]
         dev_dict = await async_process_devices(hass, manager)
+        platforms_to_setup = []
 
-        def _add_new_devices(platform: str) -> None:
+        async def _add_new_devices(platform: str) -> None:
             """Add new devices to hass."""
             old_devices = hass.data[DOMAIN][config_entry.entry_id][PLATFORMS[platform]]
             if new_devices := list(
@@ -110,14 +112,15 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry) -> b
                         hass, VS_DISCOVERY.format(PLATFORMS[platform]), new_devices
                     )
                 else:
-                    hass.async_create_task(
-                        hass.config_entries.async_forward_entry_setups(
-                            config_entry, platform
-                        )
-                    )
+                    platforms_to_setup.append(platform)
 
         for k in PLATFORMS:
             _add_new_devices(k)
+
+        if platforms_to_setup:
+            await hass.config_entries.async_forward_entry_setups(
+                config_entry, platforms_to_setup
+            )
 
     hass.services.async_register(
         DOMAIN, SERVICE_UPDATE_DEVS, async_new_device_discovery
