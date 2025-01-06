@@ -84,6 +84,7 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry) -> b
     hass.data[DOMAIN][config_entry.entry_id]["coordinator"] = coordinator
 
     device_dict = await async_process_devices(hass, manager)
+    platforms_list: list = []
 
     for p, vs_p in PLATFORMS.items():
         hass.data[DOMAIN][config_entry.entry_id][vs_p] = []
@@ -117,7 +118,10 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry) -> b
             _add_new_devices(k)
 
         if platforms_to_setup:
-            await hass.config_entries.async_forward_entry_setups(config_entry, platforms_to_setup)
+            await hass.config_entries.async_forward_entry_setups(
+                config_entry, platforms_to_setup
+            )
+            
 
     hass.services.async_register(
         DOMAIN, SERVICE_UPDATE_DEVS, async_new_device_discovery
