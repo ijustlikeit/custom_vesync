@@ -84,15 +84,15 @@ async def async_setup_entry(hass: HomeAssistant, config_entry: ConfigEntry) -> b
     hass.data[DOMAIN][config_entry.entry_id]["coordinator"] = coordinator
 
     device_dict = await async_process_devices(hass, manager)
+    platforms_list: list = []
 
-    for _, vs_p in PLATFORMS.items():
+    for p, vs_p in PLATFORMS.items():
         hass.data[DOMAIN][config_entry.entry_id][vs_p] = []
         if device_dict[vs_p]:
             hass.data[DOMAIN][config_entry.entry_id][vs_p].extend(device_dict[vs_p])
+            platforms_list.append(p)
 
-    await hass.config_entries.async_forward_entry_setups(
-        config_entry, list(PLATFORMS.keys())
-    )
+    await hass.config_entries.async_forward_entry_setups(config_entry, platforms_list)
 
     async def async_new_device_discovery(service: ServiceCall) -> None:
         """Discover if new devices should be added."""
