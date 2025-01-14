@@ -19,6 +19,8 @@ This integration will override the core VeSync integration.
 
 ### HACS
 
+[![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=haext&repository=custom_vesync&category=integration)
+
 This integration can be installed by adding this repository to HACS __AS A CUSTOM REPOSITORY__, then searching for `Custom VeSync`, and choosing install. Reboot Home Assistant and configure the 'VeSync' integration via the integrations page or press the blue button below.
 
 [![Open your Home Assistant instance and start setting up a new integration.](https://my.home-assistant.io/badges/config_flow_start.svg)](https://my.home-assistant.io/redirect/config_flow_start/?domain=vesync)
@@ -40,7 +42,8 @@ You can make sure the custom integration is in use by looking for the following 
 
 Navigate to the Vesync integration and click on `Enable debug logging`. Restart Home Assistant. Give it a few minutes and navigate back to the Vesync integration and disable debug logging. A local log file will get downloaded to your device.
 
-![image](https://github.com/RobertD502/custom_vesync/assets/52541649/c556458c-a0a6-4432-acec-1200fc561d79)
+![image](https://github.com/user-attachments/assets/9eec21fb-5414-4fb7-8fbb-c35d24e62555)
+
 
 #### YAML Method
 

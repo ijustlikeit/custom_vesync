@@ -4,6 +4,8 @@ from homeassistant.components.sensor import SensorDeviceClass
 from homeassistant.const import UnitOfTemperature, UnitOfTime
 
 DOMAIN = "vesync"
+POLLING_INTERVAL = "polling_interval"
+UPDATE_LISTENER = "update_listener"
 VS_DISCOVERY = "vesync_discovery_{}"
 SERVICE_UPDATE_DEVS = "update_devices"
 
